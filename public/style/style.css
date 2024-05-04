@@ -1,0 +1,6 @@
+#headerLabel {
+    -fx-text-alignment: center;
+    -fx-font-size: 40px;
+    -fx-background-color: #c9d2d3;
+    -fx-padding: 10px;
+}
