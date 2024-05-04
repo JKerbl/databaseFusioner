@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../../../public/style/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1220.0" stylesheets="@../../../../../public/style/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="htl.steyr.databasefusioner.dbFusionController">
    <children>
       <HBox prefHeight="85.0" prefWidth="600.0" style="-fx-alignment: center;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -15,5 +15,26 @@
             </Label>
          </children>
       </HBox>
+      <Label layoutX="50.0" layoutY="94.0" prefHeight="42.0" prefWidth="198.0" text="SQL-Dump (1) wählen:" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="94.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="50.0" layoutY="169.0" prefHeight="42.0" prefWidth="198.0" text="SQL-Dump (2) wählen:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="56.0" layoutY="136.0" mnemonicParsing="false" onMouseClicked="#chooseFileOne" prefHeight="29.0" prefWidth="161.0" text="1. Datei wählen" />
+      <Button layoutX="56.0" layoutY="211.0" mnemonicParsing="false" onMouseClicked="#chooseFileTwo" prefHeight="29.0" prefWidth="161.0" text="2. Datei wählen" />
+      <Label fx:id="fileOneChosenLabel" alignment="CENTER" layoutX="283.0" layoutY="136.0" prefHeight="29.0" prefWidth="140.0" textFill="#224ec7">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="fileTwoChosenLabel" alignment="CENTER" layoutX="283.0" layoutY="211.0" prefHeight="29.0" prefWidth="140.0" textFill="#224ec7">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
