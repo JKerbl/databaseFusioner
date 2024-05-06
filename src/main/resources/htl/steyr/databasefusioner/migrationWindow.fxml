@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="562.0" stylesheets="@../../../../../public/style/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="htl.steyr.databasefusioner.dbFusionController">
+   <children>
+      <HBox prefHeight="57.0" prefWidth="562.0" style="-fx-alignment: center;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="headerMigrationLabel" alignment="CENTER" prefHeight="59.0" prefWidth="562.0" text="Datenbankverbindung zu MySQL herstellen" textAlignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Label alignment="CENTER_RIGHT" layoutX="65.0" layoutY="77.0" prefHeight="29.0" prefWidth="122.0" text="Name der DB:" textAlignment="RIGHT">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="startMigrationButton" layoutX="157.0" layoutY="327.0" mnemonicParsing="false" onMouseClicked="#startMigration" prefHeight="42.0" prefWidth="249.0" text="Datenbank Migration starten" AnchorPane.topAnchor="327.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER_RIGHT" layoutX="65.0" layoutY="195.0" prefHeight="29.0" prefWidth="122.0" text="Benutzername:" textAlignment="RIGHT">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="65.0" layoutY="136.0" prefHeight="29.0" prefWidth="122.0" text="Port der DB:" textAlignment="RIGHT">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="65.0" layoutY="249.0" prefHeight="29.0" prefWidth="122.0" text="Passwort:" textAlignment="RIGHT">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="namedbLabel" layoutX="200.0" layoutY="77.0" prefHeight="29.0" prefWidth="249.0" />
+      <TextField fx:id="portTextField" layoutX="200.0" layoutY="136.0" prefHeight="29.0" prefWidth="249.0" />
+      <TextField fx:id="benutzernameTextField" layoutX="200.0" layoutY="195.0" prefHeight="29.0" prefWidth="249.0" />
+      <PasswordField fx:id="passwordTextField" layoutX="200.0" layoutY="249.0" prefHeight="29.0" prefWidth="249.0" />
+   </children>
+</AnchorPane>

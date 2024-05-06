@@ -3,4 +3,20 @@
     -fx-font-size: 40px;
     -fx-background-color: #c9d2d3;
     -fx-padding: 10px;
+    -fx-border-radius: 0;
+}
+
+#headerMigrationLabel {
+    -fx-text-alignment: center;
+    -fx-font-size: 24px;
+    -fx-background-color: #c9d2d3;
+    -fx-padding: 10px;
+    -fx-border-radius: 0;
+}
+
+#startMigrationButton {
+    -fx-border-radius: 0;
+    -fx-text-fill: white;
+    -fx-background-color: #103e49;
+    -fx-font-weight: bold;
 }
