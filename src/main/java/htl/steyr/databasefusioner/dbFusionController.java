@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.sql.*;
 
@@ -36,20 +38,32 @@ public class dbFusionController {
     public TextField portTextField;
     public TextField benutzernameTextField;
     public PasswordField passwordTextField;
+    public HashMap<String, ArrayList<String>> tableWithColumnNames;
+    public Button chooseFileBtn;
 
-    public void chooseFileOne(MouseEvent mouseEvent) throws IOException {
+/*    public void chooseFileOne(MouseEvent mouseEvent) throws IOException {
         File file = chooseFile();
         if (file != null) {
             fileOneChosenLabel.setText(file.getName());
             processFile(file, "output1.txt");
         }
-    }
+    }*/
+
+//    public void chooseFileTwo(MouseEvent mouseEvent) throws IOException {
+//        File file = chooseFile();
+//        if (file != null) {
+//            fileTwoChosenLabel.setText(file.getName());
+//            processFile(file, "src/main/java/htl/steyr/databasefusioner/importCommands.txt");
+//        }
+//    }
 
     public void chooseFileTwo(MouseEvent mouseEvent) throws IOException {
         File file = chooseFile();
         if (file != null) {
-            fileTwoChosenLabel.setText(file.getName());
+            chooseFileBtn.setText(file.getName());
+
             processFile(file, "src/main/java/htl/steyr/databasefusioner/importCommands.txt");
+            //alterImportCommands(tableWithColumnNames); // Aufruf der Methode, um die Import-Befehle zu ändern
         }
     }
 
@@ -64,13 +78,13 @@ public class dbFusionController {
         List<String> insertIntoCommands = new ArrayList<>();
         StringBuilder command = new StringBuilder();
 
-        Map<String, ArrayList<String>> tableWithColumnNames = new HashMap<>();
+        tableWithColumnNames = new HashMap<>();
 
         for (String line : lines) {
             if (line.startsWith("CREATE TABLE")) {
                 int indexStartName = line.indexOf('`');
                 int indexEndName = line.indexOf('`', indexStartName + 1);
-                String tableName = line.substring(indexStartName + 1, indexEndName);
+                String tableName = line.substring(indexStartName + 1, indexEndName).replaceAll("`", ""); // Entferne die Grave-Akzente
                 ArrayList<String> columnNames = new ArrayList<>();
 
                 while (!line.contains("PRIMARY KEY")) {
@@ -78,7 +92,7 @@ public class dbFusionController {
                     if (line.contains("`") && !line.contains("PRIMARY KEY")) {
                         int indexStartColumnName = line.indexOf('`');
                         int indexEndColumnName = line.indexOf('`', indexStartColumnName + 1);
-                        String columnName = line.substring(indexStartColumnName + 1, indexEndColumnName);
+                        String columnName = line.substring(indexStartColumnName + 1, indexEndColumnName).replaceAll("`", ""); // Entferne die Grave-Akzente
                         if (!columnName.equals("id")) { // 'id' column not included
                             columnNames.add(columnName);
                         }
@@ -87,7 +101,7 @@ public class dbFusionController {
                 tableWithColumnNames.put(tableName, columnNames);
             }
 
-          //  if (line.startsWith("LOCK TABLES")) {
+            //  if (line.startsWith("LOCK TABLES")) {
             if (line.startsWith("INSERT INTO")) {
                 command = new StringBuilder(line);
 
@@ -95,7 +109,7 @@ public class dbFusionController {
                 command.append("\n").append(line);
             }
 
-           // if (line.endsWith("UNLOCK TABLES;")) {
+            // if (line.endsWith("UNLOCK TABLES;")) {
             if (line.endsWith(";")) {
                 insertIntoCommands.add(command.toString());
                 command = new StringBuilder();
@@ -106,27 +120,85 @@ public class dbFusionController {
         Files.write(outputPath, insertIntoCommands);
 
         System.out.println(tableWithColumnNames);
-       // alterImportCommands();
+        alterImportCommands(tableWithColumnNames);
 
-        if (!fileTwoChosenLabel.getText().isEmpty()){
+        if (!chooseFileBtn.getText().equals("Datei auswählen")) {
             startMigrationButton.setDisable(false);
         }
-
-
     }
 
-    private void alterImportCommands() {
+    public List<String> readInsertCommandsFromFile(String filePath) {
+        List<String> insertCommands = new ArrayList<>();
 
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(filePath));
+
+            // Jetzt sind alle Zeilen der Datei in der Liste "lines" gespeichert
+            // Du kannst diese Liste durchgehen und jede Zeile anzeigen oder weiterverarbeiten
+            for (String line : lines) {
+                if (!line.trim().isEmpty()) {
+                    insertCommands.add(line);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Gib die Liste mit den nicht-leeren Zeilen zurück
+        return insertCommands;
     }
 
-    public void showMigrationScene(ActionEvent actionEvent){
+ /*   private void alterImportCommands(HashMap<String, ArrayList<String>> tableStructure) {
+        // TODO: 1) Jedes Insert-Statement aus der Datei holen.
+        // TODO: 2) nach dem Namen der Tabelle die Attribute reinspeichern
+        // TODO: 3) die id aus dem Insert-Into herausfiltern
+
+    }*/
+
+    private void alterImportCommands(HashMap<String, ArrayList<String>> tableStructure) {
+        List<String> updatedInsertCommands = new ArrayList<>();
+        String filePath = "src/main/java/htl/steyr/databasefusioner/importCommands.txt";
+        List<String> insertCommands = readInsertCommandsFromFile(filePath);
+
+        for (String insertCommand : insertCommands) {
+            String[] tokens = insertCommand.split("\\s+");
+            String tableName = tokens[2];  // Index 3 is the name of the table!
+            tableName = tableName.replaceAll("`", "");
+            ArrayList<String> columnNames = tableStructure.get(tableName);
+
+            if (!columnNames.getFirst().toLowerCase().contains("id")) {
+                Pattern pattern = Pattern.compile("\\(\\d+,");
+                Matcher matcher = pattern.matcher(insertCommand);
+
+                // Ersetze alle Vorkommen der IDs, die direkt nach einer öffnenden Klammer stehen, durch ein leeres Zeichen
+                insertCommand = matcher.replaceAll("(");
+            }
+
+
+            // Erstelle ein neues Insert-Statement mit den aktualisierten Spaltennamen
+            StringBuilder newInsertCommand = new StringBuilder("INSERT INTO ");
+            newInsertCommand.append(tableName).append(" (");
+            newInsertCommand.append(String.join(", ", columnNames)).append(") ");
+            newInsertCommand.append(insertCommand.substring(insertCommand.indexOf("VALUES"))); // Behalte die Werte bei
+
+            // Füge das aktualisierte Insert-Statement der Liste hinzu
+            updatedInsertCommands.add(newInsertCommand.toString());
+        }
+
+        // Ersetze die ursprünglichen Insert-Statements durch die aktualisierten
+        insertCommands.clear();
+        insertCommands.addAll(updatedInsertCommands);
+        System.out.println(updatedInsertCommands);
+    }
+
+    public void showMigrationScene(ActionEvent actionEvent) {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("migrationWindow.fxml"));
         Parent root = null;
         try {
             root = loader.load();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Problem beim Laden der Migration Scene!");
         }
 
         Scene scene = new Scene(root);
@@ -136,7 +208,6 @@ public class dbFusionController {
     }
 
     public void startMigration(MouseEvent mouseEvent) {
-
         String username = benutzernameTextField.getText();
         String password = passwordTextField.getText();
         int port = Integer.parseInt(portTextField.getText());
