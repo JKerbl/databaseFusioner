@@ -11,7 +11,7 @@ public class dbFusionApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(dbFusionApplication.class.getResource("main.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 867, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 562, 346);
         stage.setScene(scene);
         stage.show();
     }

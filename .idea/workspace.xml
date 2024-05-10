@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="76e86e05-16c8-4819-9b85-fd02efa95871" name="Changes" comment="adding the logic for extracting the CREATE Table - Commands and printing it in a new files">
+    <list default="true" id="76e86e05-16c8-4819-9b85-fd02efa95871" name="Changes" comment="Finishing the logic for extracting the names of the table columns and deleting the id of the values, excluding id's of the intermediate table">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/htl/steyr/databasefusioner/dbFusionApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/htl/steyr/databasefusioner/dbFusionApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/htl/steyr/databasefusioner/dbFusionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/htl/steyr/databasefusioner/dbFusionController.java" afterDir="false" />
@@ -24,6 +24,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/resources/htl/steyr/databasefusioner/main.fxml" root0="FORCE_HIGHLIGHTING" />
@@ -37,6 +38,9 @@
         <option name="mavenHome" value="Use Maven wrapper" />
       </MavenGeneralSettings>
     </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -54,6 +58,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/johan/OneDrive - HTBLA Steyr/Johannes_Schule/HTL/4. Klasse/INSY/Programme/databaseFusioner/src/main/resources/htl/steyr/databasefusioner",
     "list.type.of.created.stylesheet": "CSS",
@@ -62,6 +67,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -98,6 +104,11 @@
       <workItem from="1714974404978" duration="977000" />
       <workItem from="1715001458186" duration="3938000" />
       <workItem from="1715015413752" duration="6757000" />
+      <workItem from="1715068352729" duration="78000" />
+      <workItem from="1715280347949" duration="106000" />
+      <workItem from="1715280485137" duration="586000" />
+      <workItem from="1715281085972" duration="3362000" />
+      <workItem from="1715341090202" duration="4859000" />
     </task>
     <task id="LOCAL-00001" summary="creating project, creating files, adding stylesheet (and creating) and creating title with design">
       <option name="closed" value="true" />
@@ -161,15 +172,28 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/htl/steyr/databasefusioner/dbFusionController.java</url>
-          <line>163</line>
-          <option name="timeStamp" value="7" />
+          <line>124</line>
+          <properties class="htl.steyr.databasefusioner.dbFusionController" method="readInsertCommandsFromFile">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/htl/steyr/databasefusioner/dbFusionController.java</url>
+          <line>58</line>
+          <properties class="htl.steyr.databasefusioner.dbFusionController" method="processFile">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/htl/steyr/databasefusioner/dbFusionController.java</url>
-          <line>162</line>
-          <option name="timeStamp" value="8" />
+          <line>168</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

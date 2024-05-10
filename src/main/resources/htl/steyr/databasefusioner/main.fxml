@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="867.0" stylesheets="@../../../../../public/style/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="htl.steyr.databasefusioner.dbFusionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="346.0" prefWidth="562.0" stylesheets="@../../../../../public/style/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="htl.steyr.databasefusioner.dbFusionController">
    <children>
       <HBox prefHeight="118.0" prefWidth="1220.0" style="-fx-alignment: center;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -21,18 +21,18 @@
 <!--            <Font name="System Bold" size="18.0" />-->
 <!--         </font>-->
 <!--      </Label>-->
-      <Label alignment="CENTER" layoutX="270.0" layoutY="97.0" prefHeight="42.0" prefWidth="327.0" text="SQL Dump der Import-Datenbank:" AnchorPane.topAnchor="97.0">
+      <Label alignment="CENTER" layoutX="118.0" layoutY="110.0" prefHeight="42.0" prefWidth="327.0" text="SQL Dump der Import-Datenbank:" AnchorPane.topAnchor="110.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
 <!--      <Button layoutX="42.0" layoutY="363.0" mnemonicParsing="false" onMouseClicked="#chooseFileOne" prefHeight="29.0" prefWidth="161.0" text="1. Datei wählen" />-->
-      <Button fx:id="chooseFileBtn" layoutX="344.0" layoutY="146.0" mnemonicParsing="false" onMouseClicked="#chooseFileTwo" prefHeight="42.0" prefWidth="179.0" text="Datei auswählen" textFill="#0d538d" AnchorPane.bottomAnchor="212.0" AnchorPane.leftAnchor="344.0" AnchorPane.rightAnchor="344.0" AnchorPane.topAnchor="146.0">
+      <Button fx:id="chooseFileBtn" layoutX="115.0" layoutY="158.0" mnemonicParsing="false" onMouseClicked="#chooseFileTwo" prefHeight="42.0" prefWidth="333.0" text="Datei auswählen" textFill="#0d538d" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="114.0" AnchorPane.topAnchor="158.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="startMigrationButton" disable="true" layoutX="217.0" layoutY="268.0" mnemonicParsing="false" onAction="#showMigrationScene" prefHeight="42.0" prefWidth="435.0" text="Datenbankverbindung herstellen &amp; Migration starten" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="217.0" AnchorPane.rightAnchor="215.0">
+      <Button fx:id="startMigrationButton" disable="true" layoutX="68.0" layoutY="268.0" mnemonicParsing="false" onAction="#showMigrationScene" prefHeight="42.0" prefWidth="443.0" text="Datenbankverbindung herstellen &amp; Migration starten" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="51.0">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
@@ -40,7 +40,7 @@
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </Button>
-      <Label alignment="CENTER" layoutX="84.0" layoutY="311.0" prefHeight="50.0" prefWidth="700.0" text="Wichtig: Für eine korrekte Funktion müssen die Namen und die Tabellenstrukturen überein stimmen!" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="84.0" AnchorPane.rightAnchor="83.0">
+      <Label alignment="CENTER" layoutX="20.0" layoutY="310.0" prefHeight="50.0" prefWidth="538.0" text="Eine gleiche Tabellenstruktur wird für den Import benötigt!" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="4.0">
          <font>
             <Font name="System Italic" size="14.0" />
          </font>
