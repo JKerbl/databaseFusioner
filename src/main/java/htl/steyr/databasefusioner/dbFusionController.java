@@ -1,7 +1,6 @@
 package htl.steyr.databasefusioner;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -13,7 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,10 +20,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.sql.*;
 
 public class dbFusionController {
@@ -39,7 +35,6 @@ public class dbFusionController {
     public Button chooseFileBtn;
     public static List<String> sqlCommandsToPaste = new ArrayList<>();
     public File selectedFile;
-    public Label infoLabelFinished;
 
     public void chooseFileTwo(MouseEvent mouseEvent) throws IOException {
         selectedFile = chooseFile();
@@ -100,7 +95,6 @@ public class dbFusionController {
                     }
                 }
                 tableWithColumnNames.put(tableName, columnNames);
-                System.out.println(tableWithColumnNames);
             }
 
             if (line.startsWith("INSERT INTO")) {
@@ -198,10 +192,7 @@ public class dbFusionController {
 
             for (String insertCmd : sqlCommandsToPaste) {
                 stmt.execute(insertCmd);
-                System.out.println("Statement: " + insertCmd);
             }
-            System.out.println(sqlCommandsToPaste);
-            System.out.println("Statements sollten ausgeführt sein");
         } catch (SQLException e) {
             e.printStackTrace();
         }
